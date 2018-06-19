@@ -7,4 +7,4 @@ This QGIS Plugin is able to transform a valid GPX file (with a time field) to a 
 # Installation:
 Clone this repository and extract all files under a new folder named **GPXToSpaceTimeCube** in the following path:
 
-C:\Users\<username>\.qgis2\python\plugins\**GPXToSpaceTimeCube**
+C:\Users\ <username> \.qgis2\python\plugins\**GPXToSpaceTimeCube**
