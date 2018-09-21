@@ -248,41 +248,44 @@ class GPXtoSpaceTimeCube:
                 x.append(pt.GetX())
                 y.append(pt.GetY())
                 dateTime=feat.GetField(timeIndex)
-                DT=datetime.datetime.strptime(dateTime, "%Y/%m/%d %H:%M:%S+00" )
+                try:
+                    DT=datetime.datetime.strptime(dateTime, "%Y/%m/%d %H:%M:%S+00" )
+                except ValueError:
+                    DT=datetime.datetime.strptime(dateTime, "%Y/%m/%d %H:%M:%S.%f+00" )
                 DateTimeArray.append(DT)
                 SSE= time.mktime(DT.timetuple()) #Seconds since epoch
                 elapsedTime.append(SSE)
                 DTArray.append(DT.strftime("%H:%M:%S"))
-            #Create sub title for plot
-            title=DateTimeArray[0].strftime("%Y/%m/%d")+" " +DTArray[0]+" to " + DateTimeArray[-1].strftime("%Y/%m/%d")+" "+DTArray[-1]
-
-            #Extract elapsed time in minutes 
-            z.append(0) #First item in elapsedTime array should be 0 
-            for i in range(1,len(elapsedTime)):
-                z.append((elapsedTime[i]-elapsedTime[0])/60)
-
-            #Plot X,Y,Z
-            ax.plot(x,y,z)
-
-            #Labels & Plot
-            ax.set_xlabel('Longitude')
-            ax.set_ylabel('Latitude')
-            ax.set_zlabel('Time (Minutes)')
-            ax.legend()
-            plt.axis("equal")
-            fig.suptitle('Space Time Cube', fontsize=12, fontweight='bold')
-            plt.title(title,loc='center')
-            plt.show()
-            #Optionally save the image
-            #plt.savefig("C:/Output/SpaceTime.jpg", dpi=100, format="jpg")
-            #print "SUCCESS"
-            self.dlg.status.setText("SUCCESS")
-            self.dlg.status.setStyleSheet('background-color: green;')
         except TypeError:
-            #print "Time field does contain none or invalid dates"
+            print "Time field does contain none or invalid dates"
             self.dlg.status.setText("Time field does contain none or invalid dates")
             self.dlg.status.setStyleSheet('background-color: red;')
 
+        #Create sub title for plot
+        title=DateTimeArray[0].strftime("%Y/%m/%d")+" " +DTArray[0]+" to " + DateTimeArray[-1].strftime("%Y/%m/%d")+" "+DTArray[-1]
+
+        #Extract elapsed time in minutes 
+        z.append(0) #First item in elapsedTime array should be 0 
+        for i in range(1,len(elapsedTime)):
+            z.append((elapsedTime[i]-elapsedTime[0])/60)
+
+        #Plot X,Y,Z
+        ax.plot(x,y,z)
+
+        #Labels & Plot
+        ax.set_xlabel('Longitude')
+        ax.set_ylabel('Latitude')
+        ax.set_zlabel('Time (Minutes)')
+        ax.legend()
+        plt.axis("equal")
+        fig.suptitle('Space Time Cube', fontsize=12, fontweight='bold')
+        plt.title(title,loc='center')
+        plt.show()
+        #Optionally save the image
+        #plt.savefig("C:/Output/SpaceTime.jpg", dpi=100, format="jpg")
+        #print "SUCCESS"
+        self.dlg.status.setText("SUCCESS")
+        self.dlg.status.setStyleSheet('background-color: green;')
                  
 
     def run(self):
