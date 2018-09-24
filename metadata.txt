@@ -9,15 +9,15 @@
 [general]
 name=GPXtoSpaceTimeCube
 qgisMinimumVersion=2.0
-description=This tool transformes a GPX to a space Time Cube
+description=This tool transformes any GPX to a 3D Space Time Cube using Matplotlib
 version=0.1
 author=Nimrod Gavish
-email=n_gavi01@wwu.de
+email=gavishnimrod@gmail.com
 
-about=Simply make sure you give the correct directory to a properly schemed GPX file, and press RUN to see your GPX track visualized as a space time cube.
+about=Simply make sure you give the correct directory to a properly schemed GPX file, and press RUN to see your GPX track visualized as a 3d space time plot.
 
-tracker=github.com
-repository=github.com
+tracker=https://github.com/Nimrod51/GPX-To-SpaceTimeCube/issues
+repository=https://github.com/Nimrod51/GPX-To-SpaceTimeCube
 # End of mandatory metadata
 
 # Recommended items:
@@ -28,7 +28,7 @@ repository=github.com
 # Tags are comma separated with spaces allowed
 tags=
 
-homepage=
+homepage=https://github.com/Nimrod51/GPX-To-SpaceTimeCube
 category=Plugins
 icon=icon.png
 # experimental flag

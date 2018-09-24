@@ -6,9 +6,9 @@
  This tool transformes a GPX to a space Time Cube
                               -------------------
         begin                : 2017-08-12
-        git sha              : $Format:%H$
+        git sha              : https://github.com/Nimrod51/GPX-To-SpaceTimeCube
         copyright            : (C) 2017 by Nimrod Gavish
-        email                : n_gavi01@wwu.de
+        email                : gavishnimrod@gmail.com
  ***************************************************************************/
 
 /***************************************************************************
@@ -136,7 +136,7 @@ class GPXtoSpaceTimeCube:
         self.dlg = GPXtoSpaceTimeCubeDialog()
 
         self.dlg.toolButton.clicked.connect(self.getGPXPath)
-        self.dlg.pushButton.clicked.connect(self.RunAllCode)
+        self.dlg.pushButton.clicked.connect(self.plotGPX)
 
         icon = QIcon(icon_path)
         action = QAction(icon, text, parent)
@@ -187,7 +187,7 @@ class GPXtoSpaceTimeCube:
         self.gpx_path = QFileDialog.getOpenFileName(self.dlg, "select","",'*.gpx')
         self.dlg.lineEdit.setText(self.gpx_path)
 
-    def RunAllCode(self):
+    def plotGPX(self):
         import ogr, os
         import time, datetime
         import matplotlib as mpl
