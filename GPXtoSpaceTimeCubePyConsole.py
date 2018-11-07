@@ -4,7 +4,7 @@ import matplotlib as mpl
 from mpl_toolkits.mplot3d import Axes3D
 import matplotlib.pyplot as plt
 
-gpx_path = "C:/Users/ngavish/Data/AaseeLoop.gpx"
+gpx_path = "C:/Users/ngavish/.qgis2/python/plugins/GPXToSpaceTimeCube/sample data/AaseeLoop.gpx" #Enter your GPX Path here
 
 #Open GPX
 in_path = os.path.join (gpx_path)
@@ -82,9 +82,9 @@ plt.title(title,loc='center')
 plt.show()
 
 #Optionally save the image
-#plt.savefig("C:/Users/ngavish/Data/GPX_plot.jpg", dpi=100, format="jpg")
+#plt.savefig("C:/Output/SpaceTimePlot.jpg", dpi=100, format="jpg")
 
-##Animate image 
+##Optionally animate image 
 #for angle in range(0, 360):
 #    ax.view_init(30, angle)
 #    plt.draw()

@@ -280,8 +280,7 @@ class GPXtoSpaceTimeCube:
             plt.title(title,loc='center')
             plt.show()
             #Optionally save the image
-            #plt.savefig("C:/Output/SpaceTime.jpg", dpi=100, format="jpg")
-            #print "SUCCESS"
+            #plt.savefig("C:/Output/SpaceTimePlot.jpg", dpi=100, format="jpg")
             self.dlg.status.setText("SUCCESS")
             self.dlg.status.setStyleSheet('background-color: green;')
                  
