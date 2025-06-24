@@ -16,14 +16,16 @@ You can run the script in two ways:
 
 1. Copy folder to your QGIS plugin directory, on Windows this is typically:   
 
-C:\Users\yourusername\\.qgis2\python\plugins  
+`C:\Users\<username>\.qgis2\python\plugins`
+
+or on Linux: `/home/<username>/.local/share/QGIS/QGIS3/profiles/default/python/plugins`
 
 2. Open QGIS and enable the tool from Plugins>Manage and Install Plugins> ☑ "GPXToSpaceTimeCube"   
 
-3. Run the tool from the toolbar (ruby cube icon) and follow instructions on interface.   
+3. Run the tool from the toolbar (GPX icon) and enter input GPX file
 
 **************************************
 ## Instructions as a standalone code in QGIS Python Console
 
-Simply open the **GPXtoSpaceTimeCubePyConsole.py.py**	file in the root directory in the [QGIS Python Console](https://docs.qgis.org/2.18/en/docs/user_manual/plugins/python_console.html), and change the input path to the GPX file and run the code.
+Simply open the **gpx_to_spacetime_cube_python_console.py**	file in the root directory in the [QGIS Python Console](https://docs.qgis.org/3.40/en/docs/user_manual/plugins/python_console.html), and change the input path to the GPX file and run the code.
 
