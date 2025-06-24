@@ -1,5 +1,0 @@
-<RCC>
-    <qresource prefix="/plugins/GPXtoSpaceTimeCube" >
-        <file>icon.png</file>
-    </qresource>
-</RCC>
