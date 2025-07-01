@@ -24,6 +24,12 @@ class GPXToSpaceTimeCube:
         self.iface.removeToolBarIcon(self.action)
 
     def run(self):
+        # ───── CONFIGURATION ──────────────────────────────────────
+        TIME_UNIT = "minutes"  # "minutes" or "seconds"
+        MAX_TRACK_POINTS = 5000
+        # ──────────────────────────────────────────────────────────
+
+        # Ask user for GPX file
         file_path, _ = QFileDialog.getOpenFileName(
             self.iface.mainWindow(),
             "Select GPX file",
@@ -41,32 +47,47 @@ class GPXToSpaceTimeCube:
 
         QgsProject.instance().addMapLayer(layer)
 
-        lons, lats, times = [], [], []
-
+        lons, lats, raw_times = [], [], []
         for feat in layer.getFeatures():
             geom = feat.geometry()
-            if not geom.isEmpty():
-                point = geom.asPoint()
-                lons.append(point.x())
-                lats.append(point.y())
-                qdatetime = feat.attribute('time')
-                if qdatetime and hasattr(qdatetime, 'toPyDateTime'):
-                    dt = qdatetime.toPyDateTime()
-                    times.append(dt.timestamp())
+            if geom.isEmpty():
+                continue
+            pt = geom.asPoint()
+            lons.append(pt.x())
+            lats.append(pt.y())
+            qdt = feat.attribute('time')
+            if qdt and hasattr(qdt, 'toPyDateTime'):
+                raw_times.append(qdt.toPyDateTime().timestamp())
 
-        if not times or len(times) != len(lons):
+        # Basic validation
+        if not raw_times or len(raw_times) != len(lons):
             QMessageBox.warning(self.iface.mainWindow(), "Data Error", "No valid timestamped points found.")
             return
 
-        # Create plot
+        # Warn for very large tracks
+        if len(raw_times) > MAX_TRACK_POINTS:
+            QMessageBox.warning(
+                self.iface.mainWindow(),
+                "Large GPX Track",
+                f"Track contains {len(raw_times)} points.\nThis may affect performance."
+            )
+
+        # Compute elapsed time
+        t0 = raw_times[0]
+        elapsed = [(t - t0) for t in raw_times]
+        if TIME_UNIT == "minutes":
+            elapsed = [e / 60.0 for e in elapsed]
+        unit_label = TIME_UNIT
+
+        # Create 3D plot
         fig = plt.figure()
         ax = fig.add_subplot(111, projection='3d')
-        ax.scatter(lons, lats, times, c='blue', marker='o')
+        ax.scatter(lons, lats, elapsed, c='blue', marker='o')
         ax.set_xlabel('Longitude')
         ax.set_ylabel('Latitude')
-        ax.set_zlabel('Time (seconds since epoch)')
+        ax.set_zlabel(f'Time (elapsed {unit_label})')
 
-        # Try saving plot
+        # Save plot
         out_path = os.path.splitext(file_path)[0] + "_plot.png"
         try:
             fig.savefig(out_path)
@@ -74,10 +95,10 @@ class GPXToSpaceTimeCube:
         except Exception as e:
             QMessageBox.critical(self.iface.mainWindow(), "Save Error", f"Failed to save plot:\n{e}")
 
-        # Show plot inside a QDialog
+        # Show in dialog
         canvas = FigureCanvas(fig)
         dlg = QDialog(self.iface.mainWindow())
-        dlg.setWindowTitle("3D Space-Time Cube")
+        dlg.setWindowTitle("3D Space‑Time Cube")
         layout = QVBoxLayout()
         layout.addWidget(canvas)
         dlg.setLayout(layout)
