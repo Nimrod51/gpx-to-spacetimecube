@@ -1,8 +1,14 @@
 [general]
 name=GPX to SpaceTimeCube
-description=This tool transformes any GPX to a 3D Space Time Cube using Matplotlib
+description=This tool transforms any GPX to a 3D Space‑Time Cube using Matplotlib
 version=1.0
 qgisMinimumVersion=3.0
 author=Nimrod Gavish
 email=example@example.com
-icon=logo.png
+about=Loads GPX track points and generates a 3D space‑time cube visualization using Matplotlib, showing longitude, latitude and elapsed time. Exports plots to PNG and embeds them in a Qt dialog.
+tracker=https://github.com/Nimrod51/gpx-to-spacetimecube/issues
+repository=https://github.com/Nimrod51/gpx-to-spacetimecube
+category=Visualization
+tags=gpx,3d,space time cube,matplotlib
+changelog=1.0 - Initial release
+homepage=https://github.com/Nimrod51/gpx-to-spacetimecube
