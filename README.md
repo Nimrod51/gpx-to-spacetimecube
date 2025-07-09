@@ -1,8 +1,9 @@
 # GPX-To-SpaceTimeCube
-This QGIS Plugin is able to transform a valid GPX file (with a time field) to a space time cube (QGIS Version 2.X). Uses Matplotlib and PyQGIS.  
+This QGIS Plugin is able to transform a valid GPX file (with a `time` field and a `track_points` layer) to a space time cube. Uses Matplotlib and PyQGIS.  
 
 You can run the script in two ways:    
-1. As a QGIS 3.X Plugin (also available on: https://plugins.qgis.org/plugins/GPXToSpaceTimeCube)  
+1. As a QGIS 3.X Plugin (directly through Plugins -> Manage and Install Plugins -> GPXtoSpaceTimeCube, or from: https://plugins.qgis.org/plugins/GPXToSpaceTimeCube)  
+
 2. As a standalone code in the QGIS Python Console 
 
 
