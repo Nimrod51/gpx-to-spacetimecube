@@ -11,7 +11,7 @@ You can run the script in two ways:
 <img src="/spacetimeplot.gif?raw=true" width="500px">
 
 ******************************************
-## Instructions for running as a QGIS Plugin: 
+## Instructions for manual installation (if installation through QGIS Plugins menu fails): 
 
 1. Clone or download this repository and place items in a folder, e.g. "GPXToSpaceTimeCube"
 
